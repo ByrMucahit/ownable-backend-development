@@ -17,7 +17,6 @@ public class UserNotFoundExcepiton   extends AbstractThrowableProblem {
 
     private  String errorKey;
 
-    static  URI DEFAULT_TYPE;
 
     public UserNotFoundExcepiton (String defaultMessage, String entityName, String errorKey) {
         this(DefaultProblem.DEFAULT_TYPE, defaultMessage, entityName, errorKey);
