@@ -14,14 +14,10 @@ public class UserRole {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "user_role")
-    private UserRoles userRoles;
+    private UserRoles name;
 
     public UserRole() {
 
-    }
-
-    public UserRole(UserRoles userRoles) {
-        this.userRoles = userRoles;
     }
 
     public Long getId() {
@@ -32,12 +28,8 @@ public class UserRole {
         this.id = id;
     }
 
-    public UserRoles getUserRoles() {
-        return userRoles;
-    }
-
-    public void setUserRoles(UserRoles userRoles) {
-        this.userRoles = userRoles;
+    public UserRoles getName() {
+        return name;
     }
 
     @Override
@@ -53,11 +45,15 @@ public class UserRole {
         return Objects.hash(id);
     }
 
+    public void setName(UserRoles name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "UserRole{" +
                 "id=" + id +
-                ", userRoles=" + userRoles +
+                ", name=" + name +
                 '}';
     }
 }

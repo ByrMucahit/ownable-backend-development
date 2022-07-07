@@ -29,6 +29,9 @@ public class User implements Serializable {
     @Column(name= "last_name")
     private String lastName;
 
+    @Column(name="user_name")
+    private String userName;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name= "user_id"),
@@ -37,12 +40,12 @@ public class User implements Serializable {
 
     public User(){}
 
-    public User(String firstName, String lastName, String email, String password){
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String userName, String email, String password){
         this.email = email;
         this.password = password;
+        this.userName = userName;
     }
+
 
     public Long getId() {
         return id;
@@ -50,6 +53,14 @@ public class User implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getEmail() {

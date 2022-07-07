@@ -1,4 +1,4 @@
-package com.example.ownablebackenddevelopment.resources.model;
+package com.example.ownablebackenddevelopment.resources.model.response;
 
 public class UserResponse {
 
