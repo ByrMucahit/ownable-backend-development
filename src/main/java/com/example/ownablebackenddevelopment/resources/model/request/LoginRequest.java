@@ -1,37 +1,23 @@
 package com.example.ownablebackenddevelopment.resources.model.request;
 
+import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 public class LoginRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String firstName;
-    private String lastName;
+   @NotBlank
     private String userName;
+
+   @NotBlank
     private String password;
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public String getUserName() {
         return userName;
     }
 
-    public void setUserName() {
-        this.userName = firstName+" "+lastName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
