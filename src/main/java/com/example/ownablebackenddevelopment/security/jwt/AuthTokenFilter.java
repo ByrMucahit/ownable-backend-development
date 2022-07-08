@@ -3,6 +3,7 @@ package com.example.ownablebackenddevelopment.security.jwt;
 import com.example.ownablebackenddevelopment.security.services.UserDetailsServiceImp;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -17,10 +18,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 
 public class AuthTokenFilter extends OncePerRequestFilter {
 
+    private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
+
+    @Autowired
     private JwtUtils jwtUtils;
 
+    @Autowired
     private UserDetailsServiceImp userDetailsServiceImp;
-    private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
 
     @Override
@@ -43,6 +47,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             } catch (Exception e) {
             logger.error("Cannot set user authentication: {}", e);
         }
+        filterChain.doFilter(request, response);
     }
 
     private String parseJwt(HttpServletRequest request) {
