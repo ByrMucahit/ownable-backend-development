@@ -11,6 +11,8 @@ import com.example.ownablebackenddevelopment.resources.model.request.LoginReques
 import com.example.ownablebackenddevelopment.resources.model.response.MessageResponse;
 import com.example.ownablebackenddevelopment.security.jwt.JwtUtils;
 import com.example.ownablebackenddevelopment.security.services.UserDetailsImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,7 +32,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthResource {
-
+    private final Logger logger = LoggerFactory.getLogger(AuthResource.class);
     @Autowired
     AuthenticationManager authenticationManager;
 
@@ -48,9 +50,10 @@ public class AuthResource {
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+        logger.debug("The REST API to signin {}", loginRequest);
 
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getUserName(), loginRequest.getPassword()));
+                new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
