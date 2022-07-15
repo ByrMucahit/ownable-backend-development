@@ -72,7 +72,8 @@ public class AuthResource {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        if (userRepository.existsByUserName(signUpRequest.getUsername())) {
+        var userName = signUpRequest.getFirstName()+" "+signUpRequest.getLastName();
+        if (userRepository.existsByUserName(userName)) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Error: Username is already taken!"));
@@ -85,7 +86,7 @@ public class AuthResource {
         }
 
         // Create new user's account
-        User user = new User(signUpRequest.getUsername(),
+        User user = new User(userName,
                 signUpRequest.getEmail(),
                 encoder.encode(signUpRequest.getPassword()));
 
