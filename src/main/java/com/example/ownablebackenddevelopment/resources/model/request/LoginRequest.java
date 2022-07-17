@@ -7,14 +7,14 @@ public class LoginRequest implements Serializable {
     private static final long serialVersionUID = 1L;
 
    @NotBlank
-    private String username;
+    private String email;
 
    @NotBlank
     private String password;
 
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
     public String getPassword() {
